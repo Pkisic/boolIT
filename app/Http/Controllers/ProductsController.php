@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductsController extends Controller
 {
@@ -13,6 +14,15 @@ class ProductsController extends Controller
         
         return response()->json([
             "allProducts" => $allProducts,
+        ]);
+    }
+    
+    public function categoryProducts(Request $request, Category $category)
+    {
+        $allProducts = Product::whereBelongsTo($category,'productCategory')->get();
+        
+        return response()->json([
+           "Products from category " . $category->name => $allProducts, 
         ]);
     }
 }

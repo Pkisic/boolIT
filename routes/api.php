@@ -46,5 +46,12 @@ Route::prefix('/products')->group(function() {
             Route::get('/',
             [ProductsController::class, 'allProducts'])
             ->name('all.products');
+            
+            Route::get('/{category}',
+            [ProductsController::class,'categoryProducts'])
+            ->name('category.products')
+            ->missing(function(Request $request){
+                return response()->json(["Missing or unavailable category!"]);
+            });
              
 });
