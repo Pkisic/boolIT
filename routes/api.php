@@ -26,6 +26,16 @@ Route::prefix('/categories')->group(function() {
             
             Route::post('/update/{category}',
             [CategoriesController::class, 'update'])
-            ->name('update.categories');
+            ->name('update.categories')
+            ->missing(function(Request $request){
+                return response()->json(["Missing requested category"]);
+            });
             
+            Route::post('/delete/{category}',
+            [CategoriesController::class , 'delete'])
+            ->name('admin.users.delete')
+            ->missing(function(Request $request){
+                return response()->json(["Missing requested category"]);
+            });
+              
 });
