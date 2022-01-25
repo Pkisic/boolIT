@@ -83,4 +83,15 @@ class ProductsController extends Controller
             "product" => $product,
         ]);
     }
+    
+    public function delete(Request $request, Product $product)
+    {
+        
+        $product->delete();
+        
+        return response()->json([
+            'system_message' => $product->product_number . ' has been deleted!',
+        ]);
+        
+    }
 }

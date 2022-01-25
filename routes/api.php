@@ -60,5 +60,12 @@ Route::prefix('/products')->group(function() {
             ->missing(function(Request $request){
                 return response()->json(["Missing or unavailable product!"]);
             });
+            
+            Route::post('/delete/{product}',
+            [ProductsController::class],'delete')
+            ->name('delete.product')
+            ->missing(function(Request $request){
+                return response()->json(["Missing or unavailable product!"]);
+            });
              
 });
