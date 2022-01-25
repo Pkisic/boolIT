@@ -10,6 +10,17 @@ class Product extends Model
     use HasFactory;
     
     /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'product_number';
+    
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+    
+    /**
      * The table associated with the model.
      *
      * @var string
