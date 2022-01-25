@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CategoriesController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,4 +16,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('/categories')->group(function() {
+
+            Route::get('/',
+            [CategoriesController::class, 'allCategories'])
+            ->name('all.categories');
+            
+            Route::post('/update/{category}',
+            [CategoriesController::class, 'update'])
+            ->name('update.categories');
+            
 });
